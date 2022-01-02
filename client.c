@@ -9,11 +9,9 @@
 int main()
 {
     int sockfd = 0;
-    char buffer[1024];
-    memset(buffer, '0', sizeof(buffer));
+    char buff[1024];
+    memset(buff, '0', sizeof(buff));
     struct sockaddr_in serv_addr;
-
-    char *testMessage = "Hello Server!";
 
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     {
@@ -38,8 +36,8 @@ int main()
         printf("Connection Successful!\n");
     }
 
-    send(sockfd, testMessage, strlen(testMessage), 0);
-    recv(sockfd, buffer, 1024, 0);
-    printf("Recieved from Server: %s\n", buffer);
+    recv(sockfd, buff, strlen(buff), 0);
+    printf("Recieved from Server: %s\n", buff);
+    close(sockfd);
     return 0;
 }
