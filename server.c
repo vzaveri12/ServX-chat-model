@@ -11,12 +11,12 @@ int main()
 {
     int listenfd, connfd = 0;
     struct sockaddr_in serv_addr;
-    char recv_buffer[1024];
-    char send_buffer[1024];
+    char sendBuff[1024];
+
+    listenfd = socket(AF_INET, SOCK_STREAM, 0);
 
     memset(&serv_addr, '0', sizeof(serv_addr));
-    memset(recv_buffer, '0', sizeof(recv_buffer));
-    memset(send_buffer, '0', sizeof(send_buffer));
+    memset(sendBuff, '0', sizeof(sendBuff));
 
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -32,12 +32,10 @@ int main()
 
     connfd = accept(listenfd, (struct sockaddr*)NULL, NULL);
     printf("Socket server accepted connection\n");
-    recv(connfd, recv_buffer, strlen(recv_buffer), 0);
-    printf("Recieved from Client: %s", recv_buffer);
 
-    strcpy(send_buffer, "Hello Client!");
+    strcpy(sendBuff, "Hello Client!");
 
-    send(connfd, send_buffer, strlen(send_buffer), 0);
+    send(connfd, sendBuff, sizeof(sendBuff), 0);
     close(connfd);
 
     return 0;
