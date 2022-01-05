@@ -9,7 +9,7 @@
 int main()
 {
     int sockfd = 0;
-    char buff[1024];
+    char buff[32];
     memset(buff, '0', sizeof(buff));
     struct sockaddr_in serv_addr;
 
