@@ -6,6 +6,8 @@
 #include <string.h>
 
 #define PORT 8080
+#define PORT 8040
+#define PORT 8020
 
 int main()
 {
